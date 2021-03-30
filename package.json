@@ -1,18 +1,23 @@
 {
-  "name": "webc",
-  "version": "1.0.0",
+  "name": "@domui/core",
+  "version": "0.1.0",
   "description": "",
   "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/domui/core.git"
+  },
   "directories": {
     "example": "example"
   },
   "scripts": {
     "lint": "eslint ./",
+    "build": "esbuild src/index.js --bundle --minify --outfile=dist/domui.min.js",
     "build:example": "esbuild example/index.js --bundle --outfile=example/dist.js",
     "start": "nodemon"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Michal Jach",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "esbuild": "^0.11.0",
