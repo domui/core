@@ -1,0 +1,7 @@
+{
+  "watch": ["src", "example/index.js"],
+  "ignore": ["src/**/*.test.ts"],
+  "ext": "ts,mjs,js,json,graphql",
+  "exec": "esbuild example/index.js --bundle --outfile=example/dist.js",
+  "legacyWatch": true
+}
