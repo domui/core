@@ -1,5 +1,5 @@
 export const render = ({
-  state: initialState,
+  state: initialState = {},
   body,
   onAppear,
   onStateChange,
