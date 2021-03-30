@@ -39,10 +39,17 @@ render(component);
 
 # Getting started
 
-Install NAME with:
-`npm i NAME`
+Install DOM UI with:
+
+```
+npm i @domui/core
+```
+
 and use it:
-`import { Text, render } from 'NAME';`
+
+```
+import { Text, render } from '@domui/core';`
+```
 
 # API
 
