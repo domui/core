@@ -1,4 +1,4 @@
-# DOM UI
+# 🧬 DOM UI
 
 DOM UI is an innovative, exceptionally simple way to build web user interfaces. With a declarative syntax that’s easy to read and natural to write create super fast and lightweight UIs.
 
@@ -48,7 +48,7 @@ npm i @domui/core
 and use it:
 
 ```
-import { Text, render } from '@domui/core';`
+import { Text, render } from '@domui/core';
 ```
 
 # API
