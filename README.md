@@ -39,7 +39,7 @@ render(component);
 
 # Getting started
 
-Install DOM UI with:
+Install `DOM UI` with:
 
 ```
 npm i @domui/core
@@ -114,4 +114,41 @@ You can change the styles of each element by using modifiers. You can set [all a
 Text('Hello')
     .padding(1)
     .backgroundColor('primary')
+```
+
+## Lifecycle hooks
+
+Every `DOM UI` component has its own lifecycle. You can use lifecycle hooks to get inside each lifecycle stage.
+
+### `onAppear`
+
+Gets called after component appears inside DOM.
+
+```
+const component = {
+  onAppear() {
+    ...
+  },
+  body: () => [
+    Text('Hello World'),
+  ],
+};
+```
+
+### `onStateChange`
+
+Gets called before component state is going to be changed.
+
+```
+const component = {
+  state: {
+    value: 12
+  },
+  onStateChange(prop, prevValue, nextValue) {
+    ...
+  },
+  body: () => [
+    Text('Hello World'),
+  ],
+};
 ```
