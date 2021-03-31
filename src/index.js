@@ -2,7 +2,8 @@ export const render = ({
   state: initialState = {},
   body,
   onAppear,
-  onStateChange,
+  onBeforeStateChange,
+  onAfterStateChange,
 }) => {
   const nodes = {};
   let compiled = false;
@@ -17,8 +18,8 @@ export const render = ({
     set: (target, prop, value) => {
       let newValue = value;
       if (compiled) {
-        if (onStateChange) {
-          newValue = onStateChange(prop, target[prop], value);
+        if (onBeforeStateChange) {
+          newValue = onBeforeStateChange(prop, target[prop], value);
         }
         if (Array.isArray(newValue)) {
           const { element } = nodes[prop];
@@ -33,6 +34,9 @@ export const render = ({
             elem.textContent = newValue;
             return elem;
           });
+        }
+        if (onAfterStateChange) {
+          onAfterStateChange(prop, newValue);
         }
         return Reflect.set(target, prop, newValue);
       }
