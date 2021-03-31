@@ -1,6 +1,6 @@
 # 🧬 DOM UI
 
-DOM UI is an innovative, exceptionally simple way to build web user interfaces. With a declarative syntax that’s easy to read and natural to write create super fast and lightweight UIs. DOM UI was designed to be as fast and as small as possible - Bundle size is just `2kb` and rendering 1000 row takes `~18ms`.
+`DOM UI` is an innovative, exceptionally simple way to build web user interfaces. With a declarative syntax that’s easy to read and natural to write create super fast and lightweight UIs. DOM UI was designed to be as fast and as small as possible - It has `zero dependencies`, bundle size is just `2kb` and rendering 1000 row takes `~18ms`.
 
 Read full [Docs here](https://github.com/domui/core) or get started with README below.
 
