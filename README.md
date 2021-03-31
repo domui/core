@@ -1,6 +1,6 @@
 # 🧬 DOM UI
 
-DOM UI is an innovative, exceptionally simple way to build web user interfaces. With a declarative syntax that’s easy to read and natural to write create super fast and lightweight UIs.
+DOM UI is an innovative, exceptionally simple way to build web user interfaces. With a declarative syntax that’s easy to read and natural to write create super fast and lightweight UIs. DOM UI was designed to be as fast and as small as possible - Bundle size is just `2kb` and rendering 1000 row takes `~18ms`.
 
 Read full [Docs here](https://github.com/domui/core) or get started with README below.
 
@@ -9,6 +9,8 @@ Read full [Docs here](https://github.com/domui/core) or get started with README 
 Example **stateless** component is super easy !
 
 ```
+import { Text, render } from '@domui/core';
+
 const component = {
   body: () => [
     Text('Hello World'),
@@ -21,6 +23,8 @@ render(component);
 Example **stateful** component is super easy !
 
 ```
+import { Text, Button, render } from '@domui/core';
+
 const component = {
   state: {
     pokemon: 'pikachu'
@@ -67,7 +71,7 @@ Button('Click me', () => {
 
 ### `ForEach`
 
-Looping element with `view` presentation.
+Looping element which presents specified `view` for each item.
 
 ```
 ForEach(state.data, (item) => [
@@ -77,7 +81,7 @@ ForEach(state.data, (item) => [
 
 ### `HStack`
 
-Horizontal stack view with `view` presentation. Useful for presenting items one under another.
+Horizontal stack element which presents `view`. Useful for presenting items side by side.
 
 ```
 HStack([
@@ -97,7 +101,7 @@ Text(state.value)
 
 ### `VStack`
 
-Vertical stack view with `view` presentation. Useful for presenting items side by side.
+Vertical stack element which presents `view`. Useful for presenting items top to bottom.
 
 ```
 VStack([
@@ -152,3 +156,7 @@ const component = {
   ],
 };
 ```
+
+# LICENSE
+
+`DOM UI` is licensed under [MIT](https://github.com/domui/core/blob/main/LICENSE)
