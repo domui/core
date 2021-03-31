@@ -1,7 +1,7 @@
 {
-  "watch": ["src", "example/index.js"],
+  "watch": ["src"],
   "ignore": ["src/**/*.test.ts"],
   "ext": "ts,mjs,js,json,graphql",
-  "exec": "esbuild example/index.js --bundle --outfile=example/dist.js",
+  "exec": "esbuild src/index.js --bundle --outfile=dist/domui.min.js",
   "legacyWatch": true
 }

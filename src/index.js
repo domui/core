@@ -9,11 +9,9 @@ export const render = ({
   let compiled = false;
 
   const state = Proxy.revocable(initialState, {
-    get: (target, prop) => {
-      if (compiled) {
-        return target[prop];
-      }
-      return { name: prop, value: target[prop] };
+    get: (target, name) => {
+      const value = target[name];
+      return compiled ? value : { name, value };
     },
     set: (target, prop, value) => {
       let newValue = value;
@@ -38,7 +36,6 @@ export const render = ({
         if (onAfterStateChange) {
           onAfterStateChange(prop, newValue);
         }
-        return Reflect.set(target, prop, newValue);
       }
       return Reflect.set(target, prop, newValue);
     },
