@@ -120,7 +120,7 @@ Text('Hello')
 
 Every `DOM UI` component has its own lifecycle. You can use lifecycle hooks to get inside each lifecycle stage.
 
-### `onAppear`
+### `onAppear()`
 
 Gets called after component appears inside DOM.
 
@@ -135,9 +135,9 @@ const component = {
 };
 ```
 
-### `onStateChange`
+### `onStateChange(prop, prevValue, nextValue)`
 
-Gets called before component state is going to be changed.
+Gets called before component state is changed.
 
 ```
 const component = {
