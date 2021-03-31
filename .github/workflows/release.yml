@@ -31,7 +31,9 @@ jobs:
           release_name: 'Release ${{ steps.package-version.outputs.current-version }}'
           draft: false
           prerelease: false
-      - run: npm run build
+      - run: |
+          npm install
+          npm run build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
