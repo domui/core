@@ -1,10 +1,9 @@
 import attachCommonModifiers from '../../modifiers/common';
 
 const ForEach = (content, callback) => ({
-  type: 'foreach',
   content,
   callback,
-  element: document.createElement('div'),
+  tag: 'div',
   ...attachCommonModifiers(),
   render(nodes) {
     content.value.map((item) => {

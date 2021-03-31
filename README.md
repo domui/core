@@ -141,7 +141,7 @@ const component = {
 
 ### `onBeforeStateChange(prop, prevValue, nextValue)`
 
-Gets called before component state is changed.
+Gets called before component state is changed. You can `return` a new value that will overwrite `nextValue` and set it as next state.
 
 ```
 const component = {
@@ -149,7 +149,7 @@ const component = {
     value: 12
   },
   onBeforeStateChange(prop, prevValue, nextValue) {
-    ...
+    return 69;
   },
   body: () => [
     Text('Hello World'),

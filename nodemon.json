@@ -2,6 +2,6 @@
   "watch": ["src"],
   "ignore": ["src/**/*.test.ts"],
   "ext": "ts,mjs,js,json,graphql",
-  "exec": "esbuild src/index.js --bundle --outfile=dist/domui.min.js",
+  "exec": "esbuild src/index.js --bundle --format=esm  --outfile=dist/domui.min.js",
   "legacyWatch": true
 }

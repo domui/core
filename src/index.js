@@ -16,9 +16,8 @@ export const render = ({
     set: (target, prop, value) => {
       let newValue = value;
       if (compiled) {
-        if (onBeforeStateChange) {
-          newValue = onBeforeStateChange(prop, target[prop], value);
-        }
+        newValue = onBeforeStateChange?.(prop, target[prop], value) || newValue;
+
         if (Array.isArray(newValue)) {
           const { element } = nodes[prop];
           element.innerHTML = null;
@@ -28,38 +27,27 @@ export const render = ({
               .map((sv) => element.appendChild(sv.render())),
           );
         } else {
-          nodes[prop].map((elem) => {
+          nodes[prop].forEach((elem) => {
             elem.textContent = newValue;
-            return elem;
           });
         }
-        if (onAfterStateChange) {
-          onAfterStateChange(prop, newValue);
-        }
+        onAfterStateChange?.(prop, newValue);
       }
       return Reflect.set(target, prop, newValue);
     },
   });
 
   const component = body(state.proxy);
-
   component.map((elem) => {
-    if (elem.type) {
-      const parsed = elem.render(nodes);
-      return document.body.appendChild(parsed);
-    }
-    return null;
+    elem.element = document.createElement(elem.tag);
+    return document.body.appendChild(elem.render(nodes));
   });
-
   compiled = true;
-  if (onAppear) {
-    onAppear(state.proxy);
-  }
+  onAppear?.(state.proxy);
 };
 
 export { default as Text } from './elements/Text/Text';
 export { default as Button } from './elements/Button/Button';
-export { default as Image } from './elements/Image/Image';
 export { default as ForEach } from './elements/ForEach/ForEach';
 export { default as HStack } from './elements/HStack/HStack';
 export { default as VStack } from './elements/VStack/VStack';

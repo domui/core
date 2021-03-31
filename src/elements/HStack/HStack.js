@@ -2,8 +2,7 @@ import attachCommonModifiers from '../../modifiers/common';
 
 const HStack = (children) => ({
   children,
-  type: 'hstack',
-  element: document.createElement('div'),
+  tag: 'div',
   ...attachCommonModifiers(),
   render(nodes) {
     this.element.style.display = 'flex';

@@ -1,10 +1,9 @@
 import attachCommonModifiers from '../../modifiers/common';
 
 const Text = (text) => ({
-  type: 'text',
   text,
+  tag: 'span',
   ...attachCommonModifiers(),
-  element: document.createElement('span'),
   render(nodes) {
     const content = text.value !== undefined ? text.value : text;
     const textNode = document.createTextNode(content);

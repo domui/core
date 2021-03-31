@@ -11,8 +11,9 @@
     "dist/*"
   ],
   "scripts": {
-    "lint": "eslint ./",
+    "lint": "eslint ./src",
     "build": "esbuild src/index.js --bundle --format=esm --minify --outfile=dist/domui.min.js",
+    "build:dev": "esbuild src/index.js --bundle --format=esm --outfile=dist/domui.min.js",
     "start": "nodemon"
   },
   "author": "Michal Jach",

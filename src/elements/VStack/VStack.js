@@ -2,8 +2,7 @@ import attachCommonModifiers from '../../modifiers/common';
 
 const VStack = (children) => ({
   children,
-  type: 'vstack',
-  element: document.createElement('div'),
+  tag: 'div',
   ...attachCommonModifiers(),
   render(nodes) {
     this.element.style.display = 'flex';
