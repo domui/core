@@ -1,10 +1,13 @@
+import attachCommonModifiers from '../../modifiers/common';
+
 export const Button = (...props) => ({
   props,
+  ...attachCommonModifiers(),
+  element: document.createElement('button'),
   body([label, action]) {
-    const element = document.createElement('button');
-    element.innerText = label.textContent;
-    element.addEventListener('click', action);
-    return element;
+    this.element.appendChild(label);
+    this.element.addEventListener('click', action);
+    return this.element;
   },
 });
 
