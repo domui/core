@@ -49,7 +49,8 @@ export const render = (schema, target = document.body) => {
       }
     });
   };
-  renderCycle(schema.render(createState(schema.state)));
+
+  renderCycle(schema.render(schema.state ? createState(schema.state) : {}));
   compiled = true;
 };
 

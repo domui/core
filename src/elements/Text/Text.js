@@ -1,8 +1,12 @@
+import attachCommonModifiers from '../../modifiers/common';
+
 const Text = (...props) => ({
   props,
+  element: document.createElement('span'),
+  ...attachCommonModifiers(),
   body([label]) {
-    const element = document.createElement('span');
-    return element.appendChild(label);
+    this.element.appendChild(label);
+    return this.element;
   },
 });
 
