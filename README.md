@@ -13,7 +13,7 @@ import { Text, render } from '@domui/core';
 
 const Component = () => ({
   render: () => [
-    Text('siem')
+    Text('Hello')
   ],
 });
 
@@ -25,7 +25,7 @@ Example **stateful** component is super easy !
 ```
 import { Text, Button, render } from '@domui/core';
 
-const Component = {
+const Component = () => ({
   state: {
     pokemon: 'pikachu'
   },
@@ -36,7 +36,7 @@ const Component = {
       state.pokemon = 'mew2'
     })
   ],
-};
+});
 
 render(Component());
 ```
