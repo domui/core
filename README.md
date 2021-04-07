@@ -20,6 +20,20 @@ const Component = () => ({
 render(Component());
 ```
 
+Example **stateless** component with props is super easy !
+
+```
+import { Text, render } from '@domui/core';
+
+const Component = (name) => ({
+  render: () => [
+    Text(name)
+  ],
+});
+
+render(Component());
+```
+
 Example **stateful** component is super easy !
 
 ```
