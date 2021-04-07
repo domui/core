@@ -1,6 +1,6 @@
 # 🧬 DOM UI
 
-`DOM UI` is an innovative, exceptionally simple way to build web user interfaces. With a declarative syntax that’s easy to read and natural to write create super fast and lightweight UIs. DOM UI was designed to be as fast and as small as possible - It has `zero dependencies`, bundle size is just `2kb` and rendering 1000 row takes `~18ms`. Inspired by [Apple's SwiftUI](https://developer.apple.com/xcode/swiftui/).
+`DOM UI` is an innovative, exceptionally simple way to build web user interfaces. With a declarative syntax that’s easy to read and natural to write create super fast and lightweight UIs. DOM UI was designed to be as fast and as small as possible - It has `zero dependencies`, bundle size is just under `1kb` and rendering 1000 row takes `~18ms`. Inspired by [Apple's SwiftUI](https://developer.apple.com/xcode/swiftui/).
 
 Read full [Docs here](https://github.com/domui/core) or get started with README below.
 
@@ -11,13 +11,13 @@ Example **stateless** component is super easy !
 ```
 import { Text, render } from '@domui/core';
 
-const component = {
-  body: () => [
-    Text('Hello World'),
+const Component = () => ({
+  render: () => [
+    Text('siem')
   ],
-};
+});
 
-render(component);
+render(Component());
 ```
 
 Example **stateful** component is super easy !
@@ -25,20 +25,20 @@ Example **stateful** component is super easy !
 ```
 import { Text, Button, render } from '@domui/core';
 
-const component = {
+const Component = {
   state: {
     pokemon: 'pikachu'
   },
-  body: (state) => [
+  render: (state) => [
     Text('Hello: '),
     Text(state.pokemon),
     Button('Change', () => {
-        state.pokemon = 'mew2'
+      state.pokemon = 'mew2'
     })
   ],
 };
 
-render(component);
+render(Component());
 ```
 
 # Getting started
@@ -65,28 +65,28 @@ Clickable button with label and action.
 
 ```
 Button('Click me', () => {
-    state.variable = true;
+  state.variable = true;
 })
 ```
 
-### `ForEach`
+### `ForEach` (📝 Proposal)
 
 Looping element which presents specified `view` for each item.
 
 ```
 ForEach(state.data, (item) => [
-    Text(item)
+  Text(item)
 ])
 ```
 
-### `HStack`
+### `HStack` (📝 Proposal)
 
 Horizontal stack element which presents `view`. Useful for presenting items side by side.
 
 ```
 HStack([
-    Text('Hello'),
-    Text('World')
+  Text('Hello'),
+  Text('World')
 ])
 ```
 
@@ -99,14 +99,14 @@ Text('string'),
 Text(state.value)
 ```
 
-### `VStack`
+### `VStack` (📝 Proposal)
 
 Vertical stack element which presents `view`. Useful for presenting items top to bottom.
 
 ```
 VStack([
-    Text('Hello'),
-    Text('World')
+  Text('Hello'),
+  Text('World')
 ])
 ```
 
@@ -116,63 +116,63 @@ You can change the styles of each element by using modifiers. You can set [all a
 
 ```
 Text('Hello')
-    .padding(1)
-    .backgroundColor('primary')
+  .padding(1)
+  .backgroundColor('primary')
 ```
 
 ## Lifecycle hooks
 
 Every `DOM UI` component has its own lifecycle. You can use lifecycle hooks to get inside each lifecycle stage.
 
-### `onAppear()`
+### `onAppear()` (📝 Proposal)
 
 Gets called after component appears inside DOM.
 
 ```
-const component = {
+const Component = () => ({
   onAppear() {
     ...
   },
-  body: () => [
+  render: () => [
     Text('Hello World'),
   ],
-};
+});
 ```
 
-### `onBeforeStateChange(prop, prevValue, nextValue)`
+### `onBeforeStateChange(prop, prevValue, nextValue)` (📝 Proposal)
 
 Gets called before component state is changed. You can `return` a new value that will overwrite `nextValue` and set it as next state.
 
 ```
-const component = {
+const Component = () => ({
   state: {
     value: 12
   },
   onBeforeStateChange(prop, prevValue, nextValue) {
     return 69;
   },
-  body: () => [
+  render: () => [
     Text('Hello World'),
   ],
-};
+});
 ```
 
-### `onAfterStateChange(prop, nextValue)`
+### `onAfterStateChange(prop, nextValue)` (📝 Proposal)
 
 Gets called after component state has changed.
 
 ```
-const component = {
+const Component = () => ({
   state: {
     value: 12
   },
   onAfterStateChange(prop,nextValue) {
     ...
   },
-  body: () => [
+  render: () => [
     Text('Hello World'),
   ],
-};
+});
 ```
 
 # LICENSE

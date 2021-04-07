@@ -1,53 +1,54 @@
-export const render = ({
-  state: initialState = {},
-  body,
-  onAppear,
-  onBeforeStateChange,
-  onAfterStateChange,
-}) => {
+export const render = (schema, target = document.body) => {
   const nodes = {};
   let compiled = false;
 
-  const state = Proxy.revocable(initialState, {
-    get: (target, name) => {
-      const value = target[name];
-      return compiled ? value : { name, value };
-    },
-    set: (target, prop, value) => {
-      let newValue = value;
-      if (compiled) {
-        newValue = onBeforeStateChange?.(prop, target[prop], value) || newValue;
-
-        if (Array.isArray(newValue)) {
-          const { element } = nodes[prop];
-          element.innerHTML = null;
-          newValue.map((item) =>
-            nodes[prop]
-              .callback(item)
-              .map((sv) => element.appendChild(sv.render())),
-          );
-        } else {
+  const createState = (initialState) =>
+    Proxy.revocable(initialState, {
+      get: (store, name) => {
+        const value = store[name].value || store[name];
+        return compiled ? value : { name, value };
+      },
+      set: (store, prop, value) => {
+        if (compiled) {
           nodes[prop].forEach((elem) => {
-            elem.textContent = newValue;
+            elem.textContent = value;
           });
         }
-        onAfterStateChange?.(prop, newValue);
-      }
-      return Reflect.set(target, prop, newValue);
-    },
-  });
+        return Reflect.set(store, prop, value);
+      },
+    }).proxy;
 
-  const component = body(state.proxy);
-  component.map((elem) => {
-    elem.element = document.createElement(elem.tag);
-    return document.body.appendChild(elem.render(nodes));
-  });
+  const mapProps = (props) =>
+    props.map((prop) => {
+      if (typeof prop === 'function') {
+        return prop;
+      }
+      if (prop.value !== undefined) {
+        const textNode = document.createTextNode(prop.value);
+        nodes[prop.name] = nodes[prop.name]?.length
+          ? nodes[prop.name].push(textNode)
+          : (nodes[prop.name] = [textNode]);
+        return textNode;
+      }
+
+      return document.createTextNode(prop);
+    });
+
+  const renderCycle = (internalSchema) => {
+    internalSchema.forEach((element) => {
+      if (element.body) {
+        const body = element.body(mapProps(element.props));
+        target.appendChild(body);
+      } else {
+        renderCycle(
+          element.render(element.state ? createState(element.state) : {}),
+        );
+      }
+    });
+  };
+  renderCycle(schema.render(createState(schema.state)));
   compiled = true;
-  onAppear?.(state.proxy);
 };
 
 export { default as Text } from './elements/Text/Text';
 export { default as Button } from './elements/Button/Button';
-export { default as ForEach } from './elements/ForEach/ForEach';
-export { default as HStack } from './elements/HStack/HStack';
-export { default as VStack } from './elements/VStack/VStack';
