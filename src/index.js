@@ -25,9 +25,12 @@ export const render = (schema, target = document.body) => {
       }
       if (prop.value !== undefined) {
         const textNode = document.createTextNode(prop.value);
-        nodes[prop.name] = nodes[prop.name]?.length
-          ? nodes[prop.name].push(textNode)
-          : (nodes[prop.name] = [textNode]);
+        if (nodes[prop.name]?.length) {
+          nodes[prop.name].push(textNode);
+        } else {
+          nodes[prop.name] = [textNode];
+        }
+
         return textNode;
       }
 
