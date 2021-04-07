@@ -1,6 +1,6 @@
 {
   "name": "@domui/core",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "description": "",
   "main": "dist/domui.min.js",
   "repository": {
