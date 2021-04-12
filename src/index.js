@@ -23,18 +23,15 @@ export const render = (schema, target = document.body) => {
       if (typeof prop === 'function') {
         return prop;
       }
+      const textNode = document.createTextNode(prop.value || prop);
       if (prop.value !== undefined) {
-        const textNode = document.createTextNode(prop.value);
         if (nodes[prop.name]?.length) {
           nodes[prop.name].push(textNode);
         } else {
           nodes[prop.name] = [textNode];
         }
-
-        return textNode;
       }
-
-      return document.createTextNode(prop);
+      return textNode;
     });
 
   const renderCycle = (internalSchema) => {
